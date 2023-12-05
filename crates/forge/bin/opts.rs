@@ -4,6 +4,7 @@ use crate::cmd::{
     fmt::FmtArgs, geiger, generate, init::InitArgs, inspect, install::InstallArgs,
     remappings::RemappingArgs, remove::RemoveArgs, selectors::SelectorsSubcommands, snapshot,
     soldeer, test, tree, update,
+    mutate::MutateTestArgs,
 };
 use clap::{Parser, Subcommand, ValueHint};
 use forge_script::ScriptArgs;
@@ -156,6 +157,9 @@ pub enum ForgeSubcommand {
 
     /// Generate scaffold files.
     Generate(generate::GenerateArgs),
+
+    /// Run mutation tests on project
+    Mutate(MutateTestArgs),
 
     /// Compiler utilities.
     Compiler(CompilerArgs),
