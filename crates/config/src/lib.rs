@@ -124,6 +124,9 @@ use bind_json::BindJsonConfig;
 mod compilation;
 pub use compilation::{CompilationRestrictions, SettingsOverrides};
 
+mod mutate;
+pub use mutate::MutationConfig;
+
 /// Foundry configuration
 ///
 /// # Defaults
@@ -533,7 +536,13 @@ pub struct Config {
     /// ```
     #[doc(hidden)]
     #[serde(skip)]
-    pub _non_exhaustive: (),
+    pub __non_exhaustive: (),
+    /// Warnings gathered when loading the Config. See [`WarningsProvider`] for more information
+    #[serde(default, skip_serializing)]
+    pub __warnings: Vec<Warning>,
+
+    /// Configures the Mutation test setup
+    pub mutate: MutationConfig,
 }
 
 /// Mapping of fallback standalone sections. See [`FallbackProfileProvider`].
@@ -2409,6 +2418,7 @@ impl Default for Config {
             build_info_path: None,
             fmt: Default::default(),
             doc: Default::default(),
+            mutate: Default::default(),
             bind_json: Default::default(),
             labels: Default::default(),
             unchecked_cheatcode_artifacts: false,
