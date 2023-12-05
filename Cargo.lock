@@ -3838,7 +3838,11 @@ dependencies = [
  "foundry-config",
  "foundry-debugger",
  "foundry-evm",
+<<<<<<< HEAD
  "foundry-linking",
+=======
+ "foundry-evm-mutator",
+>>>>>>> 9e43b7052 (chore: add foundry_evm_mutator dep)
  "foundry-test-utils",
  "foundry-wallets",
  "futures",
@@ -4511,6 +4515,19 @@ dependencies = [
  "serde",
  "thiserror 2.0.11",
  "tracing",
+]
+
+[[package]]
+name = "foundry-evm-mutator"
+version = "0.2.0"
+dependencies = [
+ "alloy-json-abi",
+ "eyre",
+ "foundry-cli",
+ "foundry-common",
+ "foundry-compilers",
+ "gambit",
+ "itertools 0.11.0",
 ]
 
 [[package]]
@@ -6445,6 +6462,7 @@ dependencies = [
 
 [[package]]
 <<<<<<< HEAD
+<<<<<<< HEAD
 name = "mio"
 version = "1.0.3"
 =======
@@ -6461,6 +6479,8 @@ dependencies = [
 ]
 
 [[package]]
+=======
+>>>>>>> 9e43b7052 (chore: add foundry_evm_mutator dep)
 name = "native-tls"
 version = "0.2.11"
 >>>>>>> 1f6e1f393 (chore: rename gambit crate to mutator)
