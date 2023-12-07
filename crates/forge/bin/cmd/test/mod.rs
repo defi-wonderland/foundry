@@ -1,4 +1,4 @@
-use super::{install, test::filter::ProjectPathsAwareFilter, watch::WatchArgs};
+use super::{install, watch::WatchArgs};
 use alloy_primitives::U256;
 use chrono::Utc;
 use clap::{Parser, ValueHint};
@@ -53,7 +53,7 @@ use yansi::Paint;
 
 mod filter;
 mod summary;
-pub use filter::FilterArgs;
+pub use filter::{FilterArgs, ProjectPathsAwareFilter};
 use forge::{result::TestKind, traces::render_trace_arena_inner};
 use quick_junit::{NonSuccessKind, Report, TestCase, TestCaseStatus, TestSuite};
 use summary::{format_invariant_metrics_table, TestSummaryReport};
