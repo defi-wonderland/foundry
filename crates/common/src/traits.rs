@@ -6,7 +6,7 @@ use alloy_sol_types::SolError;
 use std::{fmt, path::Path};
 
 /// Test filter.
-pub trait TestFilter: Send + Sync {
+pub trait TestFilter: ContractFilter + Send + Sync {
     /// Returns whether the test should be included.
     fn matches_test(&self, test_name: &str) -> bool;
 
@@ -246,4 +246,13 @@ impl<T: std::error::Error> ErrorExt for T {
 pub trait FunctionFilter {
     /// Returns whether the function should be included
     fn matches_function(&self, function_name: impl AsRef<str>) -> bool;
+}
+
+/// Extension trait for matching functions
+#[auto_impl(&)]
+pub trait ContractFilter {
+    /// Returns whether the contract should be included
+    fn matches_contract(&self, contract_name: impl AsRef<str>) -> bool;
+    /// Returns a contract with the given path should be included
+    fn matches_path(&self, path: impl AsRef<str>) -> bool;
 }
