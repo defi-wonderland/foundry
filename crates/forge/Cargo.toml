@@ -106,6 +106,9 @@ quick-junit = "0.5.0"
 [target.'cfg(unix)'.dependencies]
 tikv-jemallocator = { workspace = true, optional = true }
 
+# temp file
+tempfile = { version = "3.8.0" }
+
 [dev-dependencies]
 anvil.workspace = true
 foundry-test-utils.workspace = true
