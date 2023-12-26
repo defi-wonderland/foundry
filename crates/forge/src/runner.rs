@@ -795,6 +795,21 @@ impl<'a> FunctionRunner<'a> {
         let progress =
             start_fuzz_progress(self.cr.progress, self.cr.name, &func.name, fuzz_config.runs);
 
+        // skip fuzz testing if runs is 0
+        if fuzz_config.runs == 0 {
+            return TestResult {
+                status: TestStatus::Skipped,
+                reason: None,
+                decoded_logs: decode_console_logs(&logs),
+                traces,
+                labeled_addresses,
+                kind: TestKind::Standard(0),
+                debug: None,
+                coverage,
+                ..Default::default()
+            };
+        }
+
         // Run fuzz test.
         let fuzzed_executor =
             FuzzedExecutor::new(self.executor.into_owned(), runner, self.tcfg.sender, fuzz_config);
