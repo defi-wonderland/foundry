@@ -429,6 +429,28 @@ impl<'a> ContractRunner<'a> {
             })
             .collect::<BTreeMap<_, _>>();
 
+        if has_invariants && test_options.invariant.runs > 0 {
+            let identified_contracts = load_contracts(setup.traces.clone(), known_contracts);
+            let results: Vec<_> = functions
+                .par_iter()
+                .filter(|&&func| func.is_invariant_test() && filter.matches_test(&func.signature()))
+                .map(|&func| {
+                    let runner = test_options.invariant_runner(self.name, &func.name);
+                    let invariant_config = test_options.invariant_config(self.name, &func.name);
+                    let res = self.run_invariant_test(
+                        runner,
+                        setup.clone(),
+                        *invariant_config,
+                        func,
+                        known_contracts,
+                        &identified_contracts,
+                    );
+                    (func.signature(), res)
+                })
+                .collect();
+            test_results.extend(results);
+        }
+
         let duration = start.elapsed();
         SuiteResult::new(duration, test_results, warnings)
     }
