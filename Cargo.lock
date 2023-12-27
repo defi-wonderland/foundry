@@ -4207,8 +4207,18 @@ dependencies = [
  "foundry-compilers",
  "foundry-config",
  "foundry-macros",
+<<<<<<< HEAD
  "itertools 0.14.0",
  "num-format",
+=======
+ "glob",
+ "globset",
+ "indicatif",
+ "once_cell",
+ "pretty_assertions",
+ "rand 0.8.5",
+ "regex",
+>>>>>>> b6720c111 (chore: add progressreporter and rewrite tests)
  "reqwest",
  "semver 1.0.25",
  "serde",

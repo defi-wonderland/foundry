@@ -72,6 +72,7 @@ terminal_size.workspace = true
 [build-dependencies]
 chrono.workspace = true
 vergen = { workspace = true, features = ["build", "git", "gitcl"] }
+indicatif = "0.17"
 
 [dev-dependencies]
 foundry-macros.workspace = true
