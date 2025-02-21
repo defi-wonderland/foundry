@@ -4,6 +4,7 @@ use foundry_compilers::{
     report::{self, BasicStdoutReporter, Reporter},
 };
 use foundry_config::find_project_root;
+use indicatif;
 use itertools::Itertools;
 use semver::Version;
 use std::{

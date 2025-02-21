@@ -2437,7 +2437,8 @@ impl Default for Config {
             additional_compiler_profiles: Default::default(),
             compilation_restrictions: Default::default(),
             eof: false,
-            _non_exhaustive: (),
+            __warnings: vec![],
+            __non_exhaustive: (),
         }
     }
 }

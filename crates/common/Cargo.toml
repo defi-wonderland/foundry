@@ -69,6 +69,8 @@ anstream.workspace = true
 anstyle.workspace = true
 terminal_size.workspace = true
 
+indicatif = "0.17"
+
 [build-dependencies]
 chrono.workspace = true
 vergen = { workspace = true, features = ["build", "git", "gitcl"] }
