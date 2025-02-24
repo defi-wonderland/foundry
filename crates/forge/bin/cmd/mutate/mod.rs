@@ -497,7 +497,7 @@ pub fn setup_and_compile_mutant(
     copy_dir(mutation_project_root, temp_project_root)?;
 
     // load config for this temp project
-    let mut config = Config::load_with_root(temp_project_root);
+    let mut config = Config::load_with_root(temp_project_root)?;
     // appends the root dir to the config folder variables
     // it's important
     config = config.canonic_at(temp_project_root);

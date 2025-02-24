@@ -134,7 +134,7 @@ fn run() -> Result<()> {
         ForgeSubcommand::Generate(cmd) => match cmd.sub {
             GenerateSubcommands::Test(cmd) => cmd.run(),
         },
-        ForgeSubcommands::Mutate(cmd) => {
+        ForgeSubcommand::Mutate(cmd) => {
             utils::block_on(cmd.run())
         }
         ForgeSubcommand::Compiler(cmd) => cmd.run(),

@@ -189,7 +189,7 @@ impl Mutator {
                 let name = id.name.clone();
                 let functions = abi
                     .functions()
-                    .filter(|func| !func.name.is_any_test())
+                    .filter(|func| !func.name.is_sol_test())
                     .filter(|func| filter.matches_function(func.name.clone()))
                     .map(|func| func.name.clone())
                     .collect::<Vec<_>>();
