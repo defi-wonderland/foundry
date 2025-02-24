@@ -15,6 +15,7 @@ exclude.workspace = true
 
 [dependencies]
 foundry-compilers = { workspace = true, features = ["full"] }
+foundry-config = { workspace = true }
 eyre.workspace = true
 itertools.workspace = true
 foundry-common.workspace = true

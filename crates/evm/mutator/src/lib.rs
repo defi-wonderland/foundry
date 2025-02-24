@@ -4,7 +4,8 @@ use eyre::{eyre, Result};
 use foundry_cli::utils::FoundryPathExt;
 use foundry_common::{ContractFilter, FunctionFilter, TestFunctionExt};
 use foundry_compilers::{
-    remappings::RelativeRemapping, Artifact, ArtifactId, ArtifactOutput, ProjectCompileOutput,
+    artifacts::{remappings::RelativeRemapping, Contract},
+    Artifact, ArtifactId, ArtifactOutput, Compiler, ProjectCompileOutput,
 };
 use gambit::{run_mutate, MutateParams};
 use itertools::Itertools;
@@ -38,7 +39,7 @@ impl MutatorConfigBuilder {
         Self { solc, solc_allow_paths, solc_include_paths, solc_remappings, solc_optimize }
     }
 
-    pub fn build<A: ArtifactOutput>(
+    pub fn build<A: ArtifactOutput + Compiler<CompilerContract = Contract>>(
         self,
         src_folder_root: PathBuf,
         output: ProjectCompileOutput<A>,
@@ -188,7 +189,7 @@ impl Mutator {
                 let name = id.name.clone();
                 let functions = abi
                     .functions()
-                    .filter(|func| !func.name.is_test())
+                    .filter(|func| !func.name.is_any_test())
                     .filter(|func| filter.matches_function(func.name.clone()))
                     .map(|func| func.name.clone())
                     .collect::<Vec<_>>();
