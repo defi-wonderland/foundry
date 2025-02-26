@@ -299,9 +299,9 @@ impl MutateTestArgs {
 
         let mutator = MutatorConfigBuilder::new(
             project.solc.solc.clone(),
-            config.optimizer,
-            project.allowed_paths.paths().map(|x| x.to_owned()).collect_vec(),
-            project.include_paths.paths().map(|x| x.to_owned()).collect(),
+            config.optimizer.unwrap_or(false),
+            project.paths.allowed_paths.into_iter().collect(),
+            project.paths.include_paths.into_iter().collect(),
             config.remappings.clone(),
         )
         .build(config.src.clone(), output)?;
@@ -494,7 +494,7 @@ pub fn setup_and_compile_mutant(
     let temp_project_root = temp_project.root();
 
     // copy project source code to temp dir
-    copy_dir(mutation_project_root, temp_project_root)?;
+    copy_dir(&mutation_project_root, temp_project_root)?;
 
     // load config for this temp project
     let mut config = Config::load_with_root(temp_project_root)?;
